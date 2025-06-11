@@ -1,19 +1,16 @@
-import React from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Body from './components/Body'
+import React from 'react';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Body from './components/Body';
 
-// import 'App.css'
-
-function App()  {
+function App() {
   return (
-    <div>
-      <Header/>
-      
-      <Body/>
-      <Footer/>
-    </div>
-  )
+    <>
+      <Header />
+      <Body />
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;
