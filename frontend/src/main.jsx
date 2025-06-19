@@ -9,11 +9,15 @@ import Help from './components/Help';
 import Signin from './components/Signin';
 import Body from './components/Body';
 import Cart from './components/Cart';
+import Error from './components/Error';
+import RestaurantDetail from './components/RestaurantDetail';
+import Clock from './components/Clock';
 
 const appRoutes = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement : <Error/>,
     children: [
       {
         path: '/',
@@ -34,6 +38,14 @@ const appRoutes = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart/>,
+      },
+      {
+        path: '/restaurant/:id',
+        element: <RestaurantDetail/>,
+      },
+      {
+        path: '/clock',
+        element: <Clock/>
       }
     ],
   },
