@@ -1,9 +1,11 @@
-import { fetchRestaurant,createRestaurant } from '../controllers/restaurant.controller.js';
+import { Router } from 'express';
+import { getAllRestaurants,createRestaurant,updateRestaurant, deleteRestaurant } from '../controllers/restaurant.controller.js';
 
+const router = Router();
 
-function restaurantRoutes(app){
-    app.get('/api/restaurants', fetchRestaurant);
-    app.post('/api/restaurant', createRestaurant);
-}
+router.get('/', getAllRestaurants);
+router.post('/', createRestaurant);
+router.patch('/:id', updateRestaurant);
+router.delete('/:id', deleteRestaurant);
 
-export default restaurantRoutes;
+export default router;

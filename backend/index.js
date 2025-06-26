@@ -1,28 +1,29 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import restaurantRoutes from './routes/restaurant.route.js';
+import RestaurantRoutes from './routes/Restaurant.route.js';
+import UserRoutes from './routes/User.route.js';
+import mongoose, { mongo } from 'mongoose';
 
 dotenv.config();
 
 const app = express();
-restaurantRoutes(app);
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 
-mongoose.connect(process.env.MONGO_URI)
-.then(()=>{
-    console.log("DB connected");
-})
-.catch((err) =>{
-    console.log("Error in DB", err)
+mongoose.connect(process.env.MONGO_URI).then(()=>{
+    console.log("Connected to MongoDB");
+}).catch((err)=>{
+    console.error("Error connecting to MongoDB:", err);
+});
+
+app.use("/restaurants",RestaurantRoutes);
+app.use("/users", UserRoutes);
+
+const PORT = process.env.PORT || 3000;
+app.get('/', (req,res)=>{
+    res.send("hello world");
 })
 
-const PORT = 8080;
-
-app.get('/',(req,res)=>{
-    res.send("hlooo")
-})
-app.listen(PORT, ()=>{
-    console.log(`server connected at ${PORT}`)
+app.listen(PORT,()=>{
+    console.log(`Server is running on port ${PORT}`);
 })
